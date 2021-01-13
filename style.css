@@ -1,3 +1,36 @@
 *{
-	margin: 0; padding: 0;
+    margin: 0; padding: 0;
+}
+
+li.nav-item {
+    font-family: segoe ui;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #101010;
+    line-height: 100px;
+    padding: 0 17px;
+    margin-left: 0 !important;
+}
+
+li.nav-item a {
+    padding: 0 !important;
+}
+
+a.navbar-brand {
+    padding: 0;
+    margin: 0;
+}
+
+a.navbar-brand img {
+    width: 100px;
+}
+
+nav.navbar.navbar-light.bg-faded {
+    margin: 0;
+    padding: 0;
+    height: 100px;
+}
+
+nav.navbar.navbar-light.bg-faded.navbar-fixed-top {
+    background: white;
 } 
