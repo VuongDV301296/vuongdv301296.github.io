@@ -2,6 +2,65 @@
     margin: 0; padding: 0;
 }
 
+.tt a.nuthire.btn.btn-primary {
+    width: 180px;
+    background: black;
+    border: none;
+    color: white;
+    border-radius: 0;
+}
+
+.tt p {
+    color: #545454;
+    font-size: 16px;
+    line-height: 26px;
+    margin: auto;
+    width: 50%;
+    margin-bottom: 34px;
+}
+
+.tt h2 {
+    font-size: 40px;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.tt img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 50px;
+}
+
+.tt {
+    z-index: 2;
+    position: relative;
+    padding-top: 20%;
+}
+
+.khoitt1 {
+    width: 100%;
+    height: 100%;
+    background: #55e0ce;
+}
+
+.khoitt1:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #8eecd3;
+    z-index: 1;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
 li.nav-item {
     font-family: segoe ui;
     text-transform: uppercase;
@@ -33,4 +92,28 @@ nav.navbar.navbar-light.bg-faded {
 
 nav.navbar.navbar-light.bg-faded.navbar-fixed-top {
     background: white;
-} 
+}
+
+@media (max-width: 576px) {
+    ul.nav.navbar-nav.float-xs-right {
+        float: none !important;
+        text-align: center;
+    }
+
+    li.nav-item {
+        float: none !important;
+        line-height: 27px;
+        margin: 0;
+    }
+
+    a.nav-link {
+        line-height: 27px;
+        display: inline !important;
+    }
+
+    a.navbar-brand {
+        text-align: center;
+        width: 100%;
+        display: block;
+    }
+}
