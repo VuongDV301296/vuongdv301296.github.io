@@ -8,16 +8,19 @@
             padding: 0;
             margin: 0;
         }
+
         body, html {
             width: 100%;
             height: 100%;
         }
 
-        div#div-image{
+        div {
             margin: auto;
-            height: 300px;
+            height: auto;
+            padding: 10px 0;
             text-align: center;
-         }
+        }
+
         img.img-test {
             width: 350px;
             object-fit: contain;
@@ -38,12 +41,25 @@
             <button onclick="downloadAll()">Dowload All Image and Coppy Text</button>
         </div>
         <div>
-            <a href="instagram://user?username=maket12hu">Open App Instagram</a>
+            <a href="instagram://">Open App Instagram</a>
+        </div>
+        <div>
+            <a href="http://instagram.com/_u/">Khoi chay ung dung</a>
         </div>
     </div>
 
     <script>
-        function copy_text() {
+        function makeID(length) {
+           var result           = '';
+           var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+           var charactersLength = characters.length;
+           for ( var i = 0; i < length; i++ ) {
+              result += characters.charAt(Math.floor(Math.random() * charactersLength));
+           }
+           return result;
+        }
+
+        function copyText() {
             var copyText = document.getElementById("text-origin-ig");
             var textArea = document.createElement("textarea");
             textArea.value = copyText.textContent;
@@ -53,8 +69,8 @@
             textArea.remove();
         }
 
-        function download(item, index) {
-            var fileName = "post_ig_001-0" + ++index;
+        function downloadIMG(item, index) {
+            var fileName = makeID(3) + "_post_ig_01-0" + ++index;
 
             var image = new Image();
             image.crossOrigin = "anonymous";
@@ -87,10 +103,10 @@
             var list_image = document.getElementsByClassName('img-test');
 
             for (var i in list_image) {
-                download(list_image[i].src, i);
+                downloadIMG(list_image[i].src, i);
             }
 
-            copy_text();
+            copyText();
         }
     </script>
 </body>
