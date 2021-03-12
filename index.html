@@ -3,46 +3,95 @@
     <title> Duong Van Vuong - Fontend Design </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">  
-    <script type="text/javascript" src="vendor/bootstrap.js"></script>
-    <script type="text/javascript" src="script.js"></script>
-    <link rel="stylesheet" href="vendor/bootstrap.css">
-    <link rel="stylesheet" href="vendor/font-awesome.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body, html {
+            width: 100%;
+            height: 100%;
+        }
+
+        div#div-image{
+            margin: auto;
+            height: 300px;
+            text-align: center;
+         }
+        img.img-test {
+            width: 350px;
+            object-fit: contain;
+        }
+    </style>
 </head>
 <body >
-    <div class="menutop">
-        <nav class="navbar navbar-light bg-faded navbar-fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="#"><img src="image/mylogo.jpg" alt="Logo V"></a>
-                <ul class="nav navbar-nav float-xs-right">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Giới thiệu <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Kinh Nghiệm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sản Phẩm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Thông tin liên hệ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Comment</a>
-                    </li>
-                </ul>
-          </div>
-        </nav>
+    <div>
+        <div id="div-image">
+            <img class="img-test" src="https://statics.vntrip.vn/uploads/deal/20210122_107390_10870_1500719568_104875883.jpg" alt="1">
+            <img class="img-test" src="https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/10/canh-dep-sapa.jpg" alt="2">
+            <img class="img-test" src="https://statics.vntrip.vn/uploads/deal/20210122_107470_10870_1500719520_104876105.jpg" alt="3">
+        </div>
+        <div>
+            <span id="text-origin-ig">This text click on download will be copied to the clipboard</span>
+        </div>
+        <div>
+            <button onclick="downloadAll()">Dowload All Image and Coppy Text</button>
+        </div>
+        <div>
+            <a href="instagram://user?username=maket12hu">Open App Instagram</a>
+        </div>
     </div>
-    <div class="khoitt1">
-         <div class="container text-xs-center">
-            <div class="tt">
-                <img src="https://img2.thuthuatphanmem.vn/uploads/2018/12/30/anh-nen-anime-dep-va-doc_110746197.jpg" alt="Ava">
-                <h2>DƯƠNG VĂN VƯỢNG</h2>
-                <p>Mô tả cái gì bây giờ ta? Sờ thích, sở ghét, vài chút thông tin cá nhân nhỏ hả? :D</p>
-                <a href="https://www.facebook.com/D.vuong1996" class="nuthire btn btn-primary">Liên Hệ</a>
-            </div>
-         </div>
-    </div>
+
+    <script>
+        function copy_text() {
+            var copyText = document.getElementById("text-origin-ig");
+            var textArea = document.createElement("textarea");
+            textArea.value = copyText.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("Copy");
+            textArea.remove();
+        }
+
+        function download(item, index) {
+            var fileName = "post_ig_001-0" + ++index;
+
+            var image = new Image();
+            image.crossOrigin = "anonymous";
+            image.src = item;
+            image.onload = function() {
+
+            // use canvas to load image
+            var canvas = document.createElement('canvas');
+            canvas.width = this.naturalWidth;
+            canvas.height = this.naturalHeight;
+            canvas.getContext('2d').drawImage(this, 0, 0);
+
+            var blob = canvas.toDataURL("image/png");
+
+            // create link, set href to blob
+            var a = document.createElement('a');
+            a.title = fileName;
+            a.href = blob;
+            a.style.display = 'none';
+            a.setAttribute("download", fileName);
+            a.setAttribute("target", "_blank");
+            document.body.appendChild(a);
+            
+            // click item
+            a.click();
+          }
+        }
+
+        function downloadAll() {
+            var list_image = document.getElementsByClassName('img-test');
+
+            for (var i in list_image) {
+                download(list_image[i].src, i);
+            }
+
+            copy_text();
+        }
+    </script>
 </body>
 </html>
